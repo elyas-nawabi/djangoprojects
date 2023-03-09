@@ -1,0 +1,12 @@
+<html>
+  <head> </head>
+  <body>
+    <h1>Word counter application</h1>
+    <form method="post" action="handleCounter">
+        {% csrf_token %}
+      <textarea rows="10" cols="20" name="words"></textarea>
+      <br />
+      <input type="submit" />
+    </form>
+  </body>
+</html>
