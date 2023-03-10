@@ -58,3 +58,28 @@ def handleRegister(request):
             return redirect('handleRegister')
     else:
         return render(request, 'handleRegister.html')
+
+
+def reg(request):
+    if request.method == "POST":
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
+        password2 = request.POST['password2']
+        if password == password2:
+            if User.objects.filter(username=username).exists():
+                messages.info(request, 'Username already used.')
+                return redirect('reg')
+            elif User.objects.filter(email=email).exists():
+                messages.info(request, 'email already exists')
+                return redirect('reg')
+            else:
+                user = User.objects.create_user(
+                    username=username, email=email, password=password)
+                user.save()
+                return redirect('login')
+        else:
+            messages.info(request, 'password is not the same')
+            return redirect('reg')
+    else:
+        return render(request, 'reg.html')

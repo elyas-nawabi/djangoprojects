@@ -7,4 +7,6 @@ urlpatterns = [
     path('handleCounter', views.handleCounter, name='handleCounter'),
     path('login', views.login, name='login'),
     path('handleRegister', views.handleRegister, name='handleRegister'),
+
+    path('reg', views.reg, name='reg')
 ]
