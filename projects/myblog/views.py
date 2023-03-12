@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User, auth
+from .models import *
 # Create your views here.
 
 
@@ -83,3 +84,18 @@ def reg(request):
             return redirect('reg')
     else:
         return render(request, 'reg.html')
+
+
+def logout(request):
+    auth.logout(request)
+    return redirect('/')
+
+
+def posts(request):
+    posts = Post.objects.all()
+    return render(request, 'posts.html', {'posts': posts})
+
+
+def post_details(request, id):
+    post = Post.objects.get(id=id)
+    return render(request, 'post_detail.html', {'post': post})
