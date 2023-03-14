@@ -1,6 +1,9 @@
+import json
+import urllib.request
 from django.contrib import messages
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User, auth
+import requests
 from .models import *
 # Create your views here.
 
@@ -98,4 +101,54 @@ def posts(request):
 
 def post_details(request, id):
     post = Post.objects.get(id=id)
-    return render(request, 'post_detail.html', {'post': post})
+    return render(request, 'post_details.html', {'post': post})
+
+
+# def weather(request):
+#     if request.method == 'POST':
+#         city = request.POST['city']
+#         response = requests.get(
+#             'http://api.weatherapi.com/v1/current.json?key=18ca45c7e407473a92182113231303&q='+city+'&aqi=no')
+#         data = response.json()
+#         data = {
+#             "country_code": data['location']['name'],
+#             "coordinate": data['location']['lat'] + data['location']['lon'],
+#             "temp": data['current']['temp_f'],
+#             "pressure": data['current']['pressure_mb'],
+#             "humidity": data['current']['humidity'],
+#         }
+#     else:
+#         data = {}
+#     return render(request, 'weather.html', data)
+
+def weather(request):
+    if request.method == "POST":
+        city = request.POST['city']
+        response = requests.get(
+            'http://api.weatherapi.com/v1/current.json?key=18ca45c7e407473a92182113231303&q='+city+'&aqi=no')
+        data = response.json()
+        data = {
+            "country_code": data['location']['name'],
+            "coordinate": data['location']['lat'] + data['location']['lon'],
+            "temp": data['current']['temp_f'],
+            "pressure": data['current']['pressure_mb'],
+            "humidity": data['current']['humidity'],
+            "cloud": data['current']['cloud'],
+        }
+    else:
+        data = {}
+    return render(request, 'weather.html', data)
+
+
+def users(request):
+    response = requests.get('https://jsonplaceholder.typicode.com/users')
+    # convert reponse data into json
+    users = response.json()
+    # print(users)
+    return render(request, "users.html", {'users': users})
+
+
+def list_users(request):
+    data = requests.get('https://jsonplaceholder.typicode.com/users')
+    users = data.json()
+    return render(request, 'users.html', {'users': users})

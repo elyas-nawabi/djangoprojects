@@ -2,9 +2,11 @@
   <div class="leftcolumn">
     {% for post in posts %}
     <div class="card">
-      <h2>{{post.title}}</h2>
-      <h5>{{post.created_at}}</h5>
-      <p>{{post.body|truncatewords:20}}</p>
+      <a href="/post_details/{{post.id}}">
+        <h2>{{post.title}}</h2>
+        <h5>{{post.created_at}}</h5>
+        <p>{{post.body|truncatewords:20}}</p>
+      </a>
     </div>
     {% endfor %}
   </div>

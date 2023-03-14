@@ -1,0 +1,33 @@
+{% comment %}
+<form action="" method="POST">
+  {% csrf_token %}
+  <input type="text" name="city" />
+  <br />
+  <button type="submit">Search</button>
+</form>
+<div>
+  <h1>country code : {{country_code}}</h1>
+  <h3>coordinate : {{coordinate}}</h3>
+  <h3>temp : {{temp}}</h3>
+  <h3>pressure : {{pressure}}</h3>
+  <h3>humidity : {{humidity}}</h3>
+</div>
+{% endcomment %}
+<div style="background-color: dodgerblue; padding: 20px; text-align: center">
+  <h1>Weather API</h1>
+</div>
+<div style="padding: 50px; text-align: center">
+  <form method="POST" action="">
+    {% csrf_token %}
+    <input type="text" name="city" style="width: 400px; padding: 10px" />
+    <button type="submit" style="padding: 10px">Search</button>
+  </form>
+</div>
+<div>
+  <h1>country code : {{country_code}}</h1>
+  <h3>coordinate : {{coordinate}}</h3>
+  <h3>temp : {{temp}}</h3>
+  <h3>pressure : {{pressure}}</h3>
+  <h3>humidity : {{humidity}}</h3>
+  <h3>cloud : {{cloud}}</h3>
+</div>

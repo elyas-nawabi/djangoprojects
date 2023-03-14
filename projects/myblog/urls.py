@@ -11,5 +11,8 @@ urlpatterns = [
     path('reg', views.reg, name='reg'),
     path('logout', views.logout, name='logout'),
     path('posts', views.posts, name='posts'),
-    path('post_details/<int:id>', views.post_details, name='post_details')
+    path('post_details/<int:id>', views.post_details, name='post_details'),
+    path('users', views.list_users, name='users'),
+    path('weather', views.weather, name='weather'),
+
 ]
