@@ -1,0 +1,17 @@
+<h1>{{room}}</h1>
+<h2>Hello every one </h2>
+
+<form id="post-form" >
+    {% csrf_token %}
+    <input type="hidden" name="username" id="username" value={{username}} />
+    <br>
+    <input type="hidden" name="room_id" id="room_id" value={{room_details.id}} />
+    <br>
+    <input type="text" name="message" id="message" />
+    <br>
+    <input type="submit" value="Send" />
+</form>
+
+<script>
+
+</script>

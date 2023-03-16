@@ -1,3 +1,4 @@
+{% comment %}
 <div class="row">
   <div class="leftcolumn">
     {% for post in posts %}
@@ -11,3 +12,24 @@
     {% endfor %}
   </div>
 </div>
+{% endcomment %}
+
+<h1 style="background-color: dodgerblue; padding: 50px; text-align: center">
+  Wellcome to myWebBlog
+</h1>
+{% for post in posts %}
+<a
+  href="/post_details/{{post.id}}"
+  style="text-decoration: none; cursor: hand; color: #444"
+>
+  <div>
+    <h1 style="padding: 40px; background-color: #ccc; border-radius: 5px">
+      {{post.title}}
+    </h1>
+    <div style="padding: 40px; background-color: #ccc; border-radius: 5px">
+      <h5>{{post.created_at}}</h5>
+      <h3>{{post.body | truncatewords:20}}</h3>
+    </div>
+  </div>
+</a>
+{% endfor %}

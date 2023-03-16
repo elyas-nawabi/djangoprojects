@@ -15,4 +15,8 @@ urlpatterns = [
     path('users', views.list_users, name='users'),
     path('weather', views.weather, name='weather'),
 
+    path('chat', views.chat, name='chat'),
+    path('<str:room>/', views.room, name='room'),
+    path('checkview', views.checkview, name='checkview'),
+
 ]

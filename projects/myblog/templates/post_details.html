@@ -1,3 +1,4 @@
+{% comment %}
 <div class="row">
   <div class="leftcolumn">
     <div class="card">
@@ -5,6 +6,15 @@
       <h5>{{post.created_at}}</h5>
       <p>{{post.body}}</p>
     </div>
-    {% comment %} {% endfor %} {% endcomment %}
   </div>
+</div>
+{% endcomment %}
+
+<h1 style="background-color: dodgerblue; padding: 50px; text-align: center">
+  Wellcome to myWebBlog
+</h1>
+<div>
+  <h1 style="padding: 40px">{{post.title}}</h1>
+  <h5>{{post.created_at}}</h5>
+  <h3>{{post.body}}</h3>
 </div>

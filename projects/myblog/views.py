@@ -94,6 +94,10 @@ def logout(request):
     return redirect('/')
 
 
+# def posts(request):
+#     posts = Post.objects.all()
+#     return render(request, 'posts.html', {'posts': posts})
+
 def posts(request):
     posts = Post.objects.all()
     return render(request, 'posts.html', {'posts': posts})
@@ -152,3 +156,28 @@ def list_users(request):
     data = requests.get('https://jsonplaceholder.typicode.com/users')
     users = data.json()
     return render(request, 'users.html', {'users': users})
+
+
+def room(request):
+    return render(request, 'chat.html')
+
+def room(request, room):
+    username = request.GET.get('username')
+    room_details = Room.objects.get(name=room)
+
+    return render(request, 'room.html', {
+        'username':username,
+        'room':'room',
+        'room_details': room_details
+    })
+
+def checkview(request):
+    room = request.POST['room_name']
+    username = request.POST['username']
+
+    if Room.objects.filter(name=room).exists():
+        return redirect('/'+room+'/?username='+username)
+    else:
+        new_room = Room.objects.create(name=room)
+        new_room.save()
+        return redirect('/'+room+'/?username='+username)
