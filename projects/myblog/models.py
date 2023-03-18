@@ -24,3 +24,8 @@ class Message(models.Model):
     date = models.DateTimeField(default=datetime.now, blank=True)
     user = models.CharField(max_length=10000)
     room = models.CharField(max_length=10000)
+
+
+class Image(models.Model):
+    photo = models.ImageField(upload_to="myimage")
+    date = models.DateTimeField(auto_now_add=True)

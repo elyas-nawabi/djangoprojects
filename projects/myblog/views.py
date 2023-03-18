@@ -6,6 +6,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.models import User, auth
 import requests
 from .models import *
+from .forms import ImageForm
 # Create your views here.
 
 
@@ -201,3 +202,13 @@ def getMessages(request, room):
 
     messages = Message.objects.filter(room=room_details.id)
     return JsonResponse({"messages": list(messages.values())})
+
+
+def imageupload(request):
+    if request.method == "POST":
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+    form = ImageForm()
+    img = Image.objects.all()
+    return render(request, 'imageupload.html', {'img': img, 'form': form})
